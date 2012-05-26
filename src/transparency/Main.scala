@@ -11,7 +11,8 @@ object Main {
                       |26.05.2012 14:03;Bob Martin;group2;TDD;Not everything""".stripMargin
     
     val content = Parser.simple << document
-    content.map(println)
+    
+    content.map(e => println(e.message))
   }
 
 }

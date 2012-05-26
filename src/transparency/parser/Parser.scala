@@ -3,7 +3,7 @@ package transparency.parser
 class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   
   def <<(document: String): Array[Parser.Entry] =
-    (document split lineSep) map extract
+    (document split lineSep).map(extract)
   
   private def extract(entry: String): Parser.Entry = {
     val values = entry split colSep
@@ -32,7 +32,7 @@ object Parser {
     new Parser(mapping, "\n", ";")
   }
   
-  class Entry(date: String, name: String, topic: String, message: String) {
+  class Entry(val date: String, val name: String, val topic: String, val message: String) {
     override def toString = "[" + date + "] " + name + ": " + message
   }
   
