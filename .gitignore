@@ -2,3 +2,4 @@ nbproject/*
 target/*
 project/*
 build.xml
+.DS_Store

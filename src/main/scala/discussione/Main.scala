@@ -1,6 +1,5 @@
-package transparency
+package discussione
 
-import entity._
 import parser.Parser
 
 object Main {

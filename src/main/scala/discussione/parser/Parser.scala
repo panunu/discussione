@@ -1,4 +1,4 @@
-package transparency.parser
+package discussione.parser
 
 class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   
