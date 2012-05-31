@@ -1,6 +1,8 @@
 package discussione
 
 import parser.Parser
+import com.mongodb.casbah.Imports._
+import database.Database
 
 object Main {
   
@@ -11,7 +13,8 @@ object Main {
     
     val content = Parser.simple << document
         
-    content.map(e => println(e.message))
+    val db = new Database()
+    content.map(db += _)
   }
 
 }
