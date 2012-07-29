@@ -7,7 +7,10 @@ class Database {
   
   private val collection = MongoConnection()("db")
   
-  def +=(entry: Parser.Entry) = {
+  def +=(entry: Parser.Entry): Unit = {
+    // TODO: Analyze Entry.
+    // TODO: Disregard if the message is not considered meaningful?
+    
     val persons = collection("person")
     val person = ?(persons, MongoDBObject("name" -> entry.name))
     
@@ -19,7 +22,7 @@ class Database {
       "message" -> entry.message
     )
     
-    discussions += discussion
+    //discussions += discussion
     
     println(discussions)
   }
