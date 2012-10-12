@@ -1,5 +1,12 @@
-nbproject/*
-target/*
-project/*
+target
+project/target
+project/project
+
+.classpath
+.project
+.settings
 build.xml
+
+.history
 .DS_Store
+.idea

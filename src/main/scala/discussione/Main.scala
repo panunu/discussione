@@ -1,20 +1,35 @@
 package discussione
 
 import parser.Parser
-import com.mongodb.casbah.Imports._
-import database.Database
+import discussione.amqp.AMQP
+import akka.actor.ActorSystem
+import akka.actor.Props
+import discussione.analysis.HelloActor
 
 object Main {
   
   def main(args: Array[String]): Unit = {    
-    val document = """|26.05.2012 14:00;Kent Beck;group0;TDD;What to test?
-                      |26.05.2012 14:01;Martin Fowler;group1;TDD;Everything
-                      |26.05.2012 14:03;Bob Martin;group2;TDD;Not everything""".stripMargin
+    val document = """|2012-05-26 14:00;Kent Beck;What to test?
+                      |2012-05-26 14:01;Martin Fowler;Everything
+                      |2012-05-26 14:03;Bob Martin;Not everything""".stripMargin
     
-    val content = Parser.simple << document
-
-    //val db = new Database()
-    //content.map(db += _)
+    val content = Parser.simple.parse(document)
+    content.map(println)
+    
+    val system = ActorSystem("System")
+    val helloer = system.actorOf(Props[HelloActor], name = "helloer")
+    
+    val subscriber = new AMQP
+    
+    subscriber subscribe {
+      (msg: String) => helloer ! msg
+    }
+    
+    val publisher = new AMQP 
+    publisher publish "Howdy"
+    publisher close()
+    
+    subscriber close()
   }
 
 }

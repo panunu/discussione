@@ -2,16 +2,16 @@ package discussione.parser
 
 class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   
-  def <<(document: String): Array[Parser.Entry] =
-    (document split lineSep).map(extract)
+  def parse(document: String): List[Parser.Entry] =
+    (document split lineSep).map(extract).toList
   
   private def extract(entry: String): Parser.Entry = {
     val values = entry split colSep
     
+    // TODO: Validate that given indexes are found.    
     new Parser.Entry(
       values(mapping("date")),
-      values(mapping("name")),
-      values(mapping("topic")),
+      values(mapping("author")),
       values(mapping("message"))
     )
   }
@@ -21,19 +21,16 @@ class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
 object Parser {
   
   def simple: Parser = {
-    val mapping = 
-      Map(
-        "date"    -> 0,
-        "name"    -> 1,
-        "topic"   -> 3,
-        "message" -> 4
-      )
+    val mapping = Map(
+      "date" -> 0,
+      "author" -> 1,
+      "message" -> 2)
     
     new Parser(mapping, "\n", ";")
   }
   
-  class Entry(val date: String, val name: String, val topic: String, val message: String) {
-    override def toString = "[" + date + "] " + name + ": " + message
+  class Entry(val date: String, val author: String, val message: String) {
+    override def toString = "[" + date + "] " + author + ": " + message
   }
   
 }
