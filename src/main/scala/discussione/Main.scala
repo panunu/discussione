@@ -4,7 +4,7 @@ import parser.Parser
 import discussione.amqp.AMQP
 import akka.actor.ActorSystem
 import akka.actor.Props
-import discussione.analysis.HelloActor
+import discussione.amqp.AnalyzerActor
 
 object Main {
   
@@ -17,19 +17,15 @@ object Main {
     content.map(println)
     
     val system = ActorSystem("System")
-    val helloer = system.actorOf(Props[HelloActor], name = "helloer")
+    val analyzer = system.actorOf(Props[AnalyzerActor], name = "analyzer")
     
     val subscriber = new AMQP
-    
-    subscriber subscribe {
-      (msg: String) => helloer ! msg
-    }
-    
-    val publisher = new AMQP 
-    publisher publish "Howdy"
-    publisher close()
-    
+    subscriber subscribe { (msg: String) => analyzer ! msg }    
     subscriber close()
+    
+    /*val publisher = new AMQP 
+    publisher publish "Howdy"
+    publisher close()*/
   }
 
 }
