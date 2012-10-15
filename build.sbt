@@ -10,6 +10,4 @@ libraryDependencies ++= Seq("org.slf4j" % "slf4j-simple" % "1.6.4", "org.slf4j" 
 
 libraryDependencies += "com.rabbitmq" % "amqp-client" % "2.8.2"
 
-libraryDependencies += "net.liftweb" % "lift-amqp" % "2.0"
-
 libraryDependencies += "com.typesafe.akka" % "akka-actor" % "2.0.2"
