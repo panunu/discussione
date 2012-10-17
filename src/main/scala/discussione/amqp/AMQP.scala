@@ -5,36 +5,32 @@ import com.rabbitmq.client.AMQP.BasicProperties
 
 class AMQP {
 
-  val connection = {
+  private val connection = {
     val factory = new ConnectionFactory
     factory.setHost("localhost")
     factory.setRequestedHeartbeat(0)
     factory.newConnection
   }
   
-  val channel: Channel = connection.createChannel()
-  val queue = "processed"
+  private val channel: Channel = connection.createChannel()
   
-  def subscribe(action:String => Unit) = {
+  def consume(queue:String, action:String => Unit) = {
     val consumer = new DefaultConsumer(channel) {
       override def handleDelivery(tag: String, env: Envelope, props: BasicProperties, body: Array[Byte]) {        
-    	val message = body.map(_.toChar).mkString    	
+    	val message = body.map(_.toChar).mkString
     	action(message)
-    	channel.basicAck(env.getDeliveryTag, false)
       }
     }
     
-    channel.queueDeclare(queue, false, false, true, null)
-    channel.basicConsume(queue, false, consumer)
+    channel.basicConsume(queue, true, consumer)
   }
   
-  def publish(message: String) = {
+  def produce(queue:String, message: String) = {
     val props = new BasicProperties.Builder().replyTo(queue).build()
-        
-    channel.queueDeclare(queue, false, false, true, null)
+    
     channel.basicPublish("", queue, props, message.getBytes("UTF-8"))
   }
   
-  def close() = if (channel.getConnection().isOpen()) channel.getConnection().close()
+  def close() = if (channel.isOpen()) channel.close()
   
 }

@@ -13,19 +13,17 @@ object Main {
                       |2012-05-26 14:01;Martin Fowler;Everything
                       |2012-05-26 14:03;Bob Martin;Not everything""".stripMargin
     
-    val content = Parser.simple.parse(document)
-    content.map(println)
+    //val content = Parser.simple.parse(document)
+    //content.map(println)
     
     val system = ActorSystem("System")
     val analyzer = system.actorOf(Props[AnalyzerActor], name = "analyzer")
     
-    val subscriber = new AMQP
-    subscriber subscribe { (msg: String) => analyzer ! msg }    
-    subscriber close()
+    val consumer = new AMQP
+    consumer consume("upload-material", (message: String) => analyzer ! message)
+    consumer.close()
     
-    /*val publisher = new AMQP 
-    publisher publish "Howdy"
-    publisher close()*/
+    system.shutdown()
   }
 
 }
