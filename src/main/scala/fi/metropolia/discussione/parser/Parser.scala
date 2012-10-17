@@ -1,4 +1,4 @@
-package discussione.parser
+package fi.metropolia.discussione.parser
 
 class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   

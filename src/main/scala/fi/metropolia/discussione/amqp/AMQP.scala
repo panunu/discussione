@@ -1,7 +1,8 @@
-package discussione.amqp
+package fi.metropolia.discussione.amqp
 
 import com.rabbitmq.client._
 import com.rabbitmq.client.AMQP.BasicProperties
+import sun.misc.BASE64Decoder
 
 class AMQP {
 
@@ -17,7 +18,7 @@ class AMQP {
   def consume(queue:String, action:String => Unit) = {
     val consumer = new DefaultConsumer(channel) {
       override def handleDelivery(tag: String, env: Envelope, props: BasicProperties, body: Array[Byte]) {        
-    	val message = body.map(_.toChar).mkString
+    	val message = AMQP.decode(body.map(_.toChar).mkString)
     	action(message)
       }
     }
@@ -31,6 +32,9 @@ class AMQP {
     channel.basicPublish("", queue, props, message.getBytes("UTF-8"))
   }
   
-  def close() = if (channel.isOpen()) channel.close()
-  
+  def close() = if (channel.isOpen()) channel.close()  
+}
+
+object AMQP {
+  def decode(message: String) = new String(new BASE64Decoder().decodeBuffer(message))
 }
