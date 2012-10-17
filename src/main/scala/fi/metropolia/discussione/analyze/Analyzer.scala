@@ -5,7 +5,7 @@ import fi.metropolia.mediaworks.juju.extractor.Grams;
 import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor;
 import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor.Result;
 import fi.metropolia.mediaworks.juju.syntax.parser.DocBuilder;*/
-import discussione.parser.Parser
+import fi.metropolia.discussione.parser.Parser
 
 class Analyzer {
 

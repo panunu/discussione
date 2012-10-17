@@ -1,8 +1,8 @@
 package fi.metropolia.discussione.amqp
 
 import akka.actor.Actor
-import discussione.parser.Parser
-import discussione.analyze.Analyzer
+import fi.metropolia.discussione.parser.Parser
+import fi.metropolia.discussione.analyze.Analyzer
 
 class AnalyzerActor extends Actor {
   def receive = {

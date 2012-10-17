@@ -1,9 +1,9 @@
 package fi.metropolia.discussione
 
-import discussione.amqp.AMQP
+import fi.metropolia.discussione.amqp.AMQP
 import akka.actor.ActorSystem
 import akka.actor.Props
-import discussione.amqp.AnalyzerActor
+import fi.metropolia.discussione.amqp.AnalyzerActor
 
 object Main {
   
