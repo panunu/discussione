@@ -1,4 +1,4 @@
-package fi.metropolia.discussione.amqp
+package fi.metropolia.discussione.analyze.actor
 
 import akka.actor.Actor
 import fi.metropolia.discussione.parser.Parser

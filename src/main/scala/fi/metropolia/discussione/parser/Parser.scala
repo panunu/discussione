@@ -8,7 +8,7 @@ class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   private def extract(entry: String): Parser.Entry = {
     val values = entry split colSep
     
-    // TODO: Validate that given indexes are found.    
+    // TODO: Validate that given indexes are found.
     new Parser.Entry(
       values(mapping("date")),
       values(mapping("author")),

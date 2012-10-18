@@ -1,10 +1,5 @@
 package fi.metropolia.discussione.analyze
 
-/*import fi.metropolia.mediaworks.juju.document.Doc;
-import fi.metropolia.mediaworks.juju.extractor.Grams;
-import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor;
-import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor.Result;
-import fi.metropolia.mediaworks.juju.syntax.parser.DocBuilder;*/
 import fi.metropolia.discussione.parser.Parser
 
 class Analyzer {

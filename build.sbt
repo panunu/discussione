@@ -13,5 +13,3 @@ libraryDependencies += "com.rabbitmq" % "amqp-client" % "2.8.2"
 libraryDependencies += "com.typesafe.akka" % "akka-actor" % "2.0.2"
 
 libraryDependencies += "fi.metropolia.ereading" % "Juju" % "0.0.1-SNAPSHOT"
-
-

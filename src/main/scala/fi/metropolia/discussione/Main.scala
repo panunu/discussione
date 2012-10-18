@@ -3,7 +3,7 @@ package fi.metropolia.discussione
 import fi.metropolia.discussione.amqp.AMQP
 import akka.actor.ActorSystem
 import akka.actor.Props
-import fi.metropolia.discussione.amqp.AnalyzerActor
+import fi.metropolia.discussione.analyze.actor.AnalyzerActor
 
 object Main {
   
