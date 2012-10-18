@@ -20,3 +20,4 @@ libraryDependencies += "fi.metropolia.ereading" % "Juju" % "0.0.1-SNAPSHOT" with
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
 
+libraryDependencies += "org.scalaj" %% "scalaj-collection" % "1.2"
