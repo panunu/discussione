@@ -9,13 +9,13 @@ class Analyzer {
 
   val docBuilder = new DocBuilder
   
-  def analyze(content: List[Parser.Entry]): Unit = {
-    content.map(msg => println(extract(msg.message)))
+  def analyze(content: List[Parser.Entry]) = {
+    content.map(msg => extract(msg.message))
   }
   
-  private def extract(message: String) = {
+  def extract(message: String) = {
     val extrator = new KeyphraseExtractor(docBuilder.generateDocWithOmorfi(message))
-    extrator.process()
+    extrator.process().getKeyphrases()
   }
   
 }
