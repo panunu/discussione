@@ -30,7 +30,7 @@ object Parser {
   }
   
   class Entry(val date: String, val author: String, val message: String) {
-    override def toString = "[" + date + "] " + author + ": " + message
+    override def toString(): String = "[" + date + "] " + author + ": " + message
   }
   
 }

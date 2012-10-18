@@ -6,6 +6,6 @@ import fi.metropolia.discussione.analyze.Analyzer
 
 class AnalyzerActor extends Actor {
   def receive = {
-	case message: String => new Analyzer().analyze(Parser.simple.parse(message))
+    case message: String => new Analyzer().analyze(Parser.simple.parse(message))
   }
 }
