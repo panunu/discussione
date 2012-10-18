@@ -24,19 +24,21 @@ class Analyzer {
    *   keyphrases: { "word": 1.0, ... },
    * }
    */
-  def analyzeOne(entry: Entry) = {
+  def analyzeOne(entry: Entry): Processed = {
 	val result = process(entry.message)
-	val keyphrases = keyphrase(result)
-	keyphrases.map(println)
+
+	new Processed(
+	    entry.author,
+	    entry.date,
+	    entry.message, 
+	    keyphrase(result)
+	)
   }
   
   private def process(message: String) =
     new KeyphraseExtractor(docBuilder.generateDocWithOmorfi(message)).process
   
-  private def asd(result: Result) =
-    result.getFrequencies(0, true, true)
-    
   private def keyphrase(result: Result) =
-    result.getKeyphrases().asScala.map { case (key, value) => (key.toString(), value) }
+    result.getKeyphrases().asScala.map { case (key, value) => (key.toString(), value) } // Todo: Weights.
   
 }
