@@ -16,8 +16,7 @@ class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
       values(mapping("author")),
       values(mapping("message"))
     )
-  }
-  
+  }  
 }
 
 object Parser {  

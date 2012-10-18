@@ -11,7 +11,7 @@ class Analyzer {
 
   val docBuilder = new DocBuilder
   
-  def analyze(content: List[Parser.Entry]) = {
+  def analyze(content: List[Entry]) = {
 	val analysis = content.map(analyzeOne)
   }
   
@@ -24,7 +24,7 @@ class Analyzer {
    *   keyphrases: { "word": 1.0, ... },
    * }
    */
-  def analyzeOne(entry: Parser.Entry) = {
+  def analyzeOne(entry: Entry) = {
 	val result = process(entry.message)
 	val keyphrases = keyphrase(result)
 	keyphrases.map(println)
