@@ -22,13 +22,16 @@ class AMQP {
         action(message)
       }
     }
-    
+
+    channel.queueDeclare(queue, true, false, false, null)
     channel.basicConsume(queue, true, consumer)
   }
   
   def produce(queue:String, message: String): Unit = {
-    val props = new BasicProperties.Builder().replyTo(queue).build()
-    channel.basicPublish("", queue, props, message.getBytes("UTF-8"))
+    val props = new BasicProperties.Builder().build()
+    
+    channel.queueDeclare(queue, true, false, false, null)
+    channel.basicPublish(queue, "", null, message.getBytes("UTF-8"))
   }
   
   def close(): Unit = if (channel.isOpen()) channel.close()  

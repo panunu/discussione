@@ -4,6 +4,7 @@ import akka.actor.Actor
 import fi.metropolia.discussione.parser.Parser
 import fi.metropolia.discussione.analyze.Analyzer
 import fi.metropolia.discussione.amqp.AMQP
+import com.codahale.jerkson.Json._
 
 class AnalyzerActor extends Actor {
   
@@ -11,10 +12,12 @@ class AnalyzerActor extends Actor {
   
   def receive = {
     case message: String => {
-      val analysis = analyzer.analyze(Parser.simple.parse(message))
+      val data = analyzer.analyze(Parser.simple.parse(message))
+      
+      println(data)
       
       val amqp = new AMQP
-      amqp produce("processed", AMQP.encode(analysis.toString)) // To JSON.
+      amqp produce("processed", AMQP.encode(generate(data)))
       amqp close()
     }
   }

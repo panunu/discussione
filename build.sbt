@@ -11,6 +11,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
+resolvers += "Codahale Repisotry" at "http://repo.codahale.com"
+
 
 libraryDependencies += "com.rabbitmq" % "amqp-client" % "2.8.2"
 
@@ -21,3 +23,5 @@ libraryDependencies += "fi.metropolia.ereading" % "Juju" % "0.0.1-SNAPSHOT" with
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
 
 libraryDependencies += "org.scalaj" %% "scalaj-collection" % "1.2"
+
+libraryDependencies += "com.codahale" %% "jerkson" % "0.5.0"
