@@ -2,7 +2,7 @@ package fi.metropolia.discussione.amqp
 
 import com.rabbitmq.client._
 import com.rabbitmq.client.AMQP.BasicProperties
-import sun.misc.BASE64Decoder
+import sun.misc.{BASE64Decoder, BASE64Encoder}
 
 class AMQP {
 
@@ -36,4 +36,5 @@ class AMQP {
 
 object AMQP {
   def decode(message: String): String = new String(new BASE64Decoder().decodeBuffer(message))
+  def encode(message: String): String = new String(new BASE64Encoder().encodeBuffer(message.getBytes()))
 }
