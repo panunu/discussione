@@ -11,7 +11,7 @@ class Analyzer {
 
   val docBuilder = new DocBuilder
   
-  def analyze(content: List[Entry]) = {
+  def analyze(content: List[Unprocessed]) = {
 	val analysis = content.map(analyzeOne)
   }
   
@@ -24,7 +24,7 @@ class Analyzer {
    *   keyphrases: { "word": 1.0, ... },
    * }
    */
-  def analyzeOne(entry: Entry): Processed = {
+  def analyzeOne(entry: Unprocessed): Processed = {
 	val result = process(entry.message)
 
 	new Processed(

@@ -1,17 +1,17 @@
 package fi.metropolia.discussione.parser
 
-import fi.metropolia.discussione.analyze.Entry
+import fi.metropolia.discussione.analyze.Unprocessed
 
 class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
   
-  def parse(document: String): List[Entry] =
+  def parse(document: String): List[Unprocessed] =
     (document split lineSep).map(extract).toList
   
-  private def extract(entry: String): Entry = {
+  private def extract(entry: String): Unprocessed = {
     val values = entry split colSep
     
     // TODO: Validate that given indexes are found.
-    new Entry(
+    new Unprocessed(
       values(mapping("date")),
       values(mapping("author")),
       values(mapping("message"))
