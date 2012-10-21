@@ -11,7 +11,7 @@ class AnalyzerTest extends FunSuite with BeforeAndAfter {
     assert(target.analyzeOne(entry).isInstanceOf[Processed])
   }
   
-  test("analyzeOne keyphrases message as Map to Processed") {    
+  test("analyzeOne keyphrases message to Map with String key") {    
     assert(target.analyzeOne(entry).keyphrases == Map("puhe" -> 1.0))
   }
   

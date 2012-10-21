@@ -28,7 +28,6 @@ class AMQP {
   
   def produce(queue:String, message: String): Unit = {
     val props = new BasicProperties.Builder().replyTo(queue).build()
-    
     channel.basicPublish("", queue, props, message.getBytes("UTF-8"))
   }
   

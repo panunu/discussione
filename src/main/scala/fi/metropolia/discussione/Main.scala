@@ -13,7 +13,7 @@ object Main {
     
     println("Initializing consumer...")
     val consumer = new AMQP
-    consumer consume("upload-material", (message: String) => analyzer ! message)
+    consumer consume("unprocessed", (message: String) => analyzer ! message)
   }
 
 }
