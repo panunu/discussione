@@ -24,13 +24,11 @@ class Analyzer {
    *   keyphrases: { "word": 1.0, ... },
    * }
    */
-  def analyzeOne(entry: Unprocessed): Processed = {
-	val result = process(entry.message)
+  def analyzeOne(original: Unprocessed): Processed = {
+	val result = process(original.message)
 
 	new Processed(
-	    entry.author,
-	    entry.date,
-	    entry.message, 
+	    original, 
 	    keyphrase(result)
 	)
   }
