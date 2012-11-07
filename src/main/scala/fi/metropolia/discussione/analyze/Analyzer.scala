@@ -6,13 +6,20 @@ import fi.metropolia.mediaworks.juju.document.Doc
 import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor
 import fi.metropolia.mediaworks.juju.syntax.parser.DocBuilder
 import fi.metropolia.mediaworks.juju.extractor.keyphrase.KeyphraseExtractor.Result
+import sun.misc.Sort
 
 class Analyzer {
 
   val docBuilder = new DocBuilder
   
-  def analyze(content: List[Unprocessed]): List[Processed] = {
-	content.map(analyzeOne)
+  def analyze(unprocessed: List[Unprocessed]) = {
+    // Objectify.
+	Map(
+	  "discussion" -> unprocessed.map(analyzeOne),  
+	  "summary" -> Map(
+	    "keyphrases" -> analyzeAll(unprocessed)
+	  )
+	)
   }
   
   /**
@@ -31,6 +38,10 @@ class Analyzer {
 	    original, 
 	    keyphrase(result)
 	)
+  }
+  
+  def analyzeAll(data: List[Unprocessed]) = {
+    keyphrase(process(data.map(_.message).reduce(_ + _))).filter(_._2 > 1)
   }
   
   private def process(message: String) =

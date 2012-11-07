@@ -11,7 +11,7 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
-resolvers += "Codahale Repisotry" at "http://repo.codahale.com"
+resolvers += "Codahale Repository" at "http://repo.codahale.com"
 
 
 libraryDependencies += "com.rabbitmq" % "amqp-client" % "2.8.2"

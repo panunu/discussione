@@ -9,7 +9,9 @@ class AMQP {
   private val connection = {
     val factory = new ConnectionFactory
     factory.setHost("localhost")
-    factory.setRequestedHeartbeat(0)
+    factory.setUsername("user")
+    factory.setPassword("user")
+    factory.setVirtualHost("/discussione/")
     factory.newConnection
   }
 

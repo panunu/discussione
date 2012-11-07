@@ -12,10 +12,10 @@ class AnalyzerActor extends Actor {
   
   def receive = {
     case message: String => {
-      val data = analyzer.analyze(Parser.simple.parse(message))
+      val data = Parser.simple.parse(message)
             
       val amqp = new AMQP
-      amqp produce("processed", AMQP.encode(generate(Map("messages" -> data))))
+      amqp produce("processed", AMQP.encode(generate(analyzer.analyze(data))))
       amqp close()
     }
   }
