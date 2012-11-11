@@ -5,6 +5,7 @@ project/project
 .classpath
 .project
 .settings
+.idea_modules/
 build.xml
 
 .cache
