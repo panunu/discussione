@@ -7,6 +7,9 @@ class Stream {
   val keyphrase = new Keyphrase
 
   // TODO: This is horrible. Refactor to functional once you know how.
+  /**
+   * Returns stream graph compliant data.
+   */
   def all(data: List[Unprocessed]): Map[String, List[Map[String, Any]]] = {
     val keyphrases = data.map(keyphrase single _)
 
