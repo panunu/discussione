@@ -12,7 +12,6 @@ class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
     
     // TODO: Validate that given indexes are found.
     new Unprocessed(
-      values(mapping("date")),
       values(mapping("author")),
       values(mapping("message"))
     )
@@ -22,9 +21,8 @@ class Parser(mapping: Map[String, Int], lineSep: String, colSep: String) {
 object Parser {  
   def simple: Parser = {
     val mapping = Map(
-      "date" -> 0,
-      "author" -> 1,
-      "message" -> 2)
+      "author" -> 0,
+      "message" -> 1)
     
     new Parser(mapping, "\n", ";")
   }  

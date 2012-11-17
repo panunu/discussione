@@ -15,7 +15,7 @@ class Keyphrase {
   /**
    * Filters results: only takes words which have a frequency of > 1.
    */
-  def all(data: List[Unprocessed]): Map[String, Double] = keyphrase(process(data.map(_.message).reduce(_ + _))).filter(_._2 > 1)
+  def all(data: List[Unprocessed]): Map[String, Double] = keyphrase(process(data.map(_.message).reduce(_ + _)))
   
   /**
    * Does not filter based on frequencies.
@@ -25,7 +25,10 @@ class Keyphrase {
   private def keyphrase(result: Result) =
     result.getKeyphrases().asScala.map { case (key, value) => (key.toString().asInstanceOf[String], value) } // Todo: Weights.
 
-  private def process(message: String) =
-    new KeyphraseExtractor(docBuilder.generateDocWithOmorfi(message)).process
+  private def process(message: String) = {
+    val extractor = new KeyphraseExtractor(docBuilder.generateDocWithOmorfi(message))
+    extractor.addDefaultWeighters("hs")
+    extractor.process
+  }
   
 }

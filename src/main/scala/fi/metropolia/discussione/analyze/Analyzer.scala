@@ -12,7 +12,7 @@ class Analyzer {
 	  Map(
 	    "discussions" -> process(unprocessed),
 	    "summary" -> Map(
-	      "keyphrases" -> keyphrase.all(unprocessed),
+	      "keyphrases" -> keyphrase.all(unprocessed).filter(_._2 >= 0.2),
 	      "stream" -> stream.all(unprocessed),
         "awards" -> award.all(unprocessed)
 	    )
