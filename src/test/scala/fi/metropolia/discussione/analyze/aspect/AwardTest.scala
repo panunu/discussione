@@ -16,15 +16,15 @@ class AwardTest extends FunSuite with BeforeAndAfter {
   )
 
   test("collects the author with the most words in discussion") {
-    assert(award.all(unprocessed)("mostWords") == "A")
+    assert(award.all(unprocessed).mostWords == "A")
   }
 
   test("collects the author with the least words in discussion") {
-    assert(award.all(unprocessed)("leastWords") == "C")
+    assert(award.all(unprocessed).leastWords == "C")
   }
 
   test("collects the author with the most discussions") {
-    assert(award.all(unprocessed)("mostDiscussions") == "B")
+    assert(award.all(unprocessed).mostDiscussions == "B")
   }
   
 }

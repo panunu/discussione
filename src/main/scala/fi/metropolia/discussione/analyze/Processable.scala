@@ -7,6 +7,8 @@ case class Unprocessed(val author: String, val message: String) extends Processa
   override def toString(): String = author + ": " + message
 }
 
-case class Differenced(val author: String, val x:Double, val y:Double) extends Processed
+case class Differenced(val author: String, val x: Double, val y: Double) extends Processed
 
-case class Streamed(val word: String, val x:Double, val y:Double) extends Processed
+case class Streamed(val word: String, val x: Double, val y: Double) extends Processed
+
+case class Awarded(val mostWords: String, val leastWords: String, val mostDiscussions: String) extends Processed

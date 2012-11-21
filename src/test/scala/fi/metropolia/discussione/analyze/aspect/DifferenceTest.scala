@@ -14,7 +14,5 @@ class DifferenceTest extends FunSuite with BeforeAndAfter {
   )
 
   test("calculates difference") {
-    //assert(award.all(unprocessed)("mostWords") == "A")
-    println(difference.all(unprocessed))
   }
 }
