@@ -7,13 +7,15 @@ class Analyzer {
   val keyphrase = new Keyphrase
   val stream = new Stream
   val award = new Award
-  
+  val difference = new Difference
+
   def analyze(unprocessed: List[Unprocessed]) = {
 	  Map(
 	    "discussions" -> process(unprocessed),
 	    "summary" -> Map(
-	      "keyphrases" -> keyphrase.all(unprocessed).filter(_._2 >= 0.2),
-	      "stream" -> stream.all(unprocessed),
+        "keyphrases" -> keyphrase.all(unprocessed).filter(_._2 >= 0.2),
+        "differences" -> difference.all(unprocessed),
+        "stream" -> stream.all(unprocessed),
         "awards" -> award.all(unprocessed)
 	    )
 	  )

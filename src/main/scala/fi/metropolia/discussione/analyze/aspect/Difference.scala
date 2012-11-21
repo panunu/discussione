@@ -11,14 +11,17 @@ class Difference {
    * Calculates differences (distances) for discussions (uses keyphrases).
    * Calculation is based on a weighted Jaccard distance.
    */
-  def all(data: List[Unprocessed]) = {
-    val keyphrased = data.map((original:Unprocessed) => Map("author" -> original.author, "keyphrases" -> keyphrase.single(original).map(_._1)))
-    val keyphrases = keyphrase all data
+  def all(data: List[Unprocessed]):List[Differenced] = {
+    val keyphrased = data.map((original:Unprocessed) => Map("author" -> original.author, "keyphrases" -> keyphrase.single(original).foldLeft("")(_ + _._1)))
+    //val keyphrases = keyphrase all data
 
-    // { author: "A", x: x, y: Math.random(), z: Math.random()})
-    println(keyphrases)
+    var x = -1
+    def next = { x = x + 1; x }
 
-    keyphrased
+    keyphrased.sliding(2).map((xs) => new Differenced(
+      xs.last("author"),
+      next,
+      jaccard.distance(xs.head("keyphrases"), xs.last("keyphrases")))).toList
   }
   
 }

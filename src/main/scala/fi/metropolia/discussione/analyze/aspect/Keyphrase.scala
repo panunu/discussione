@@ -23,7 +23,7 @@ class Keyphrase {
   def single(original: Unprocessed): Map[String, Double] = keyphrase(process(original.message))
   
   private def keyphrase(result: Result) =
-    result.getKeyphrases().asScala.map { case (key, value) => (key.toString().asInstanceOf[String], value) } // Todo: Weights.
+    result.getKeyphrases().asScala.map { case (key, value) => (key.toString().asInstanceOf[String], value) }
 
   private def process(message: String) = {
     val extractor = new KeyphraseExtractor(docBuilder.generateDocWithOmorfi(message))
